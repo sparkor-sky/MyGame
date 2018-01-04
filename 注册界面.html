@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>注册游戏</title>
+		
+		<style>
+			#registerForm{
+				margin-left:5%;
+			}
+			label{
+				color:red;
+				margin-left:1%;
+			}
+		</style>
+		<script type="text/javascript">
+		
+			var userNameFlag=false;
+			var passwordFlag=false;
+			var repasswordFlag=false;
+			var emailFlag=false;
+			var phoneFlag=true;
+			
+			function validUserName(){//验证用户名
+				var ele=document.getElementById("userName");
+				var text=ele.value;
+				var reg=new RegExp("^.{4,8}$");
+				var label=document.getElementById("userNameLabel");
+				if(!reg.test(text)){
+					label.style="color:red";
+					label.innerHTML="用户名格式错误！";
+					userNameFlag=false;
+					}
+				else {
+					label.style="color:green";
+					label.innerHTML="√";
+					userNameFlag=true;
+				}
+			}
+			function validUserPassword(){//验证密码格式
+                var text=document.getElementById("password").value;
+                var reg = new RegExp("^.{6,16}$");
+                
+                var label=document.getElementById("passwordLabel");
+				if(!reg.test(text)){
+					label.style="color:red";
+					label.innerHTML="密码格式错误！";
+					passwordFlag=false;
+					}
+				else {
+					label.style="color:green";
+					label.innerHTML="√";
+					passwordFlag=true;
+				}
+			}
+			function validRepassword(){//验证两次密码是否一致格式
+				var label=document.getElementById("repasswordLabel");
+				if(document.getElementById("password").value != document.getElementById("repassword").value){
+					label.style="color:red";
+					label.innerHTML="两次密码不一致！";
+					repasswordFlag=false;
+					}
+				else {
+					label.style="color:green";
+					label.innerHTML="√";
+					repasswordFlag=true;
+				}
+			}
+			function validEmail(){//验证邮箱
+				var etext=document.getElementById("email").value;
+				var reg=new RegExp("^[0-9A-Za-zd]+([-_.][0-9A-Za-zd]+)*@([0-9A-Za-zd]+[-.])+[0-9A-Za-zd]{2,5}$");
+				var label=document.getElementById("emailLabel");
+				if(!reg.test(etext)){
+					label.style="color:red";
+					label.innerHTML="邮箱格式不正确！";
+					emailFlag=false;
+				}
+				else{
+					label.style="color:green";
+					label.innerHTML="√";
+					emailFlag=true;
+				}	
+			}
+			function validPhone(){
+				var etext=document.getElementById("phone").value;
+				var reg=new RegExp("^1[0-9]{10}$");
+				var label=document.getElementById("phoneLabel");
+				if(!reg.test(etext)){
+					label.style="color:red";
+					label.innerHTML="手机号码格式不正确！";
+					phoneFlag=false;
+				}
+				else{
+					label.style="color:green";
+					label.innerHTML="√";
+					phoneFlag=true;
+				}	
+			}
+			function valid(){//提交按钮验证函数
+				if(!userNameFlag || !passwordFlag || !repasswordFlag || !emailFlag ||!phoneFlag){
+					alert("您填写的数据格式不正确，请核对后重新提交！");
+					return false;
+				}
+				return true;
+			}
+		</script>
+	</head>
+	<body>
+		<h1>欢迎注册俄罗斯方块！经典自将永恒！</h1><br>
+		<form id="registerForm" action="./登录界面.html" method="post" onsubmit="return valid()">	
+		
+			输入用户名：<input id="userName" type="text" maxlength="8" onblur="validUserName()" placeholder="请输入4-8位的用户名"></input>
+			<label id="userNameLabel" 	for="userName">*</label><br><br>
+			请输入密码：<input id="password" type="password" maxlength="16" onblur="validUserPassword()" placeholder="请输入6-16位的密码"></input>
+			<label id="passwordLabel" 	for="password">*</label><br><br>
+			请确认密码：<input id="repassword" type="password" maxlength="16" onblur="validRepassword()"></input>	
+			<label id="repasswordLabel" for="repassword">*</label><br><br>
+			请输入邮箱：<input id="email" type="email" maxlength="20" onblur="validEmail()"></input>			
+			<label id="emailLabel" for="email">*</label><br><br>
+			联 系 电 话：<input id="phone" type="tel" maxlength="11" onblur="validPhone()"></input>			
+			<label id="phoneLabel" for="phone"></label><br><br>
+			请选择性别：
+			男<input type="radio" name="sex" value="man"></input>
+			女<input type="radio" name="sex" value="woman"></input>
+			保密<input type="radio" name="sex" value="unknow"></input><br><br>
+			请选择生日：<input type="date"></input><br><br>
+			自我评价：<br><textarea rows="10" cols="48"></textarea><br><br>
+			<input type="submit"></input>
+			
+		</form>
+	</body>
+<html>

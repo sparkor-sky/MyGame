@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>登录游戏</title>
+		<script type="text/javascript">
+			var userNameFlag=false;
+			var passwordFlag=false;
+			
+			
+			function validUserName(){
+				var ele=document.getElementById("userName");
+				var text=ele.value;
+				var reg=new RegExp("^.{4,8}$");
+				//使用正则表达式验证用户名
+				var label=document.getElementById("userNameLable");
+				if(!reg.test(text)){
+					label.innerHTML="用户名格式错误！";
+					userNameFlag=false;
+					}
+				else {
+					label.innerHTML="";
+					userNameFlag=true;
+				}
+			}
+			function validUserPassword(){
+                var text=document.getElementById("password").value;
+                var reg = new RegExp("^.{6,16}$");
+                //使用正则表达式验证密码
+                var label=document.getElementById("passwordLable");
+				if(!reg.test(text)){
+					label.innerHTML="密码格式错误！";
+					passwordFlag=false;
+					}
+				else {
+					label.innerHTML="";
+					passwordFlag=true;
+				}
+			}
+			function valid(){
+				
+				if(!userNameFlag || !passwordFlag){
+					alert("用户名或密码格式错误！");
+					return false;
+				}
+				return true;
+			}
+		</script>
+		<style>
+			#submit{
+				width:270px;
+			}
+			#login{
+				margin-left:5%;
+				border-style:dashed;
+				width:550px;
+				text-align:left;
+			}
+			#logform{
+				margin-left:10%;
+				margin-top:0%;
+				margin-bottom:5%;
+				margin-right:10%;
+			}
+			label{
+				color:red;
+				margin-left:2%;
+			}
+			h1{
+				margin-left:5%;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>欢迎来到5157游戏！经典自将永恒！</h1><br>
+		<div id="login">	
+			<form id="logform"  action="./index.html" method="post" onsubmit="return valid()">
+				<br>
+				输入用户名：<input type="text"     id="userName" onblur="validUserName()"      maxlength="8"></input><label id="userNameLable" for="userName"></label><br><br>
+				请输入密码：<input type="password" id="password" onblur="validUserPassword()" maxlength="16"></input><label id="passwordLable" for="password"></label><br><br>
+				<input  id="submit" type="submit" value="登录"></input>
+				<p id="register">还没有账号？立即<a href="注册界面.html">注册</a></p>
+			</form>
+			
+		</div>
+		
+	</body>
+<html>
